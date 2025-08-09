@@ -1,0 +1,78 @@
+body {
+    background: #1a1a2e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.weather-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.location {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.current-weather {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.current-weather h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.current-weather p {
+    margin: 5px 0;
+}
+
+.hourly-forecast, .ten-day-forecast {
+    margin-bottom: 20px;
+}
+
+.hourly-forecast h3, .ten-day-forecast h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.hourly-data, .ten-day-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hour, .day {
+    text-align: center;
+    padding: 10px;
+    background: #2e2e3e;
+    border-radius: 5px;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.detail-item {
+    background: #2e2e3e;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detail-item br {
+    line-height: 1.5;
+}
