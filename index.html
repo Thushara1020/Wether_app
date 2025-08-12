@@ -1,49 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="/assect/style.css">
-</head>
-<body">
-    <div class="weather-container">
-        <div class="location">Pannipitiya</div>
-        <div class="current-weather">
-            <h1>28°</h1>
-            <p>Rainy Day</p>
-            <p>Today, expect a rainy day with temperatures reaching a maximum of 28°C. Make sure to grab your umbrella and raincoat before heading out.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Oxygen+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assect/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <main>
+      <!-- search bar and city name -->
+      <section class="container">
+        <div class="row">
+          <form class="col" id="search-form">
+            <input
+              type="text"
+              id="search-input"
+              aria-describedby="searchCity"
+              placeholder="Search city..."
+              class="search-form"
+              autocomplete="off"
+            />
+            <button type="submit">Search</button>
+          </form>
+          <h1
+            class="col d-flex justify-content-center align-items-center city-title"
+            id="searched-city"
+          >
+            Colombo
+          </h1>
         </div>
-        <div class="hourly-forecast">
-            <h3>Hourly Forecast</h3>
-            <div class="hourly-data">
-                <div class="hour">Now<br>28°</div>
-                <div class="hour">15:00<br>28°</div>
-                <div class="hour">16:00<br>26°</div>
-                <div class="hour">17:00<br>29°</div>
-                <div class="hour">18:00<br>32°</div>
-                <div class="hour">19:00<br>28°</div>
+        <span class="measurements">
+          <a href="#" id="celcius-link">C°</a> |
+          <a href="#" id="fahrenheit-link">F°</a>
+        </span>
+      </section>
+
+      <!-- temp and day info -->
+      <section class="current-weather">
+        <div class="container">
+          <div class="row">
+            <h1 class="col temp-title" id="current-temperature">26°</h1>
+            <div class="col todays-info">
+              <p id="current-time">11:00</p>
+              <h2 id="current-day">Today</h2>
+              <p id="weather-type">Cloudy</p>
             </div>
-        </div>
-        <div class="ten-day-forecast">
-            <h3>10-Day Forecast</h3>
-            <div class="ten-day-data">
-                <div class="day">Today<br>28°</div>
-                <div class="day">Thu<br>28°</div>
-                <div class="day">Fri<br>26°</div>
-                <div class="day">Sat<br>29°</div>
-                <div class="day">Sun<br>32°</div>
-                <div class="day">Mon<br>28°</div>
+            <div class="col d-flex align-items-center side-info">
+              <ul>
+                <li>Humidity: <span id="humidity"></span></li>
+                <li>Wind: <span id="wind"></span></li>
+              </ul>
             </div>
+          </div>
         </div>
-        <div class="details">
-            <div class="detail-item">Feels Like<br>30°<br>Humidity is making it feel warmer</div>
-            <div class="detail-item">Precipitation<br>2.3"<br>in last 24h<br>2" expected in next 24h</div>
-            <div class="detail-item">Visibility<br>6 mi</div>
-            <div class="detail-item">Humidity<br>82%<br>The dew point is 25° right now</div>
-            <div class="detail-item">UV Index<br>3<br>Moderate<br>Use sun protection until 16:00</div>
-            <div class="detail-item">Wind<br>3 MPH<br>9 MPH Gusts</div>
+        <hr />
+      </section>
+
+      <!--5 day forecast-->
+      <section class="container">
+        <div class="row week-forecast">
+          <div class="col">
+            <h3>Fri</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/rain.png"
+            /><br />
+            <p class="weather">Rain</p>
+            <span>2°</span>
+          </div>
+          <div class="col">
+            <h3>Sat</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/cloud.png"
+            /><br />
+            <p class="weather">Cloudy</p>
+            <span>4°</span>
+          </div>
+          <div class="col">
+            <h3>Sun</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/partly-cloudy-day.png"
+            /><br />
+            <p class="weather">Partly cloudy</p>
+            <span>6°</span>
+          </div>
+          <div class="col">
+            <h3>Mon</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/sun.png"
+            /><br />
+            <p class="weather">Sunny</p>
+            <span>8°</span>
+          </div>
+          <div class="col">
+            <h3>Tues</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/wind.png"
+            /><br />
+            <p class="weather">Windy</p>
+            <span>5°</span>
+          </div>
         </div>
-    </div>
-</body>
+      </section>
+
+      <footer>
+        <p>
+          Designed and coded by
+          <a href="" target="_blank">Thushara</a
+          ><span>✌🏼</span>
+        </p>
+      </footer>
+    </main>
+    <script src="/assect/app.js"></script>
+  </body>
 </html>
